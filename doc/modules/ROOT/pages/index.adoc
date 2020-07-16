@@ -1,6 +1,6 @@
 :github-address: https://github.com/hazelcast-guides/springboot-caching
-:templates-url: https://raw.githubusercontent.com/hazelcast-guides/adoc-templates/master
 :hazelcast: Hazelcast IMDG
+:templates-url: templates:ROOT:page$/
 :framework: Spring Boot
 = Caching with Spring Boot and Hazelcast
 
