@@ -124,14 +124,14 @@ Members {size:1, ver:1} [
 You can test the application by executing the following command.
 
 ----
-curl locahost:8080/books/12345
+curl localhost:8080/books/12345
 Sample Book Name
 ----
 
 The first time you execute this command it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
 
 ----
-curl locahost:8080/books/12345
+curl localhost:8080/books/12345
 Sample Book Name
 ----
 
