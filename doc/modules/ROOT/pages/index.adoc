@@ -1,4 +1,4 @@
-:github-address: https://github.com/hazelcast-guides/springboot-caching
+:github-address: https://github.com/hazelcast-guides/caching-springboot
 :hazelcast: Hazelcast IMDG
 :templates-url: templates:ROOT:page$/
 :framework: Spring Boot
