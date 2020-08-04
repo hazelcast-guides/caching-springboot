@@ -144,6 +144,6 @@ Sample Book Name
 
 == What's more?
 
-If you want to use Hazelcast in the client-server topology, then it's enough to create `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured a Hazelcast client.
+If you want to use Hazelcast in the client-server topology, then it's enough to place `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured a Hazelcast client.
 
 If you want to read more, check out the official documentation https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-hazelcast[Spring Boot: Hazelcast].
