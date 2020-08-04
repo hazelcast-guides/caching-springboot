@@ -68,7 +68,9 @@ public class BookService {
 }
 ----
 
-If we started the application, then every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()`, which in turn would first check the cache. Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
+If we started the application, then every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()`, which in turn would first check the cache.
+
+Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
 
 == Using Hazelcast as Cache Manager
 
@@ -83,7 +85,7 @@ We want to use Hazelcast as the cache manager. The good news is that all you hav
 </dependency>
 ----
 
-Then, you need to add Hazelcast configuration in one of the following manners:
+Then, you need to add Hazelcast configuration using one of the below options:
 
 - Add `hazelcast.yaml` configuration OR
 - Add `hazelcast.xml` configuration OR
@@ -105,13 +107,13 @@ No more configuration needed, Hazelcast is already used as the cache manager for
 
 == Starting the Application
 
-To start the application, run the following command.
+To start the application, run the following command:
 
 ----
 mvn spring-boot:run
 ----
 
-You should see in the logs that embedded Hazelcast has started.
+You should see in the logs that embedded Hazelcast has started:
 
 ----
 Members {size:1, ver:1} [
@@ -121,7 +123,7 @@ Members {size:1, ver:1} [
 
 == Testing the Application
 
-You can test the application by executing the following command.
+You can test the application by executing the following command:
 
 ----
 curl localhost:8080/books/12345
