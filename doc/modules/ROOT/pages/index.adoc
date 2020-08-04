@@ -10,7 +10,7 @@ include::{templates-url}/link-to-repo.adoc[]
 
 == What You’ll Learn
 
-In this guide, you'll deploy a Spring Boot application which uses Hazelcast as a cache manager.
+In this guide, you'll deploy a Spring Boot application that uses Hazelcast as a cache manager.
 
 == Prerequisites
 
@@ -36,8 +36,12 @@ In our case, let's have a simple web service with two classes defined as follows
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    @Autowired
-    private BookService bookService;
+
+    private final BookService bookService;
+
+    BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping("/{isbn}")
     public String getBookNameByIsbn(@PathVariable("isbn") String isbn) {
@@ -61,14 +65,17 @@ public class BookService {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
         }
         return "Sample Book Name";
     }
 }
 ----
 
-If we started the application, then every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()` which in turn would first check the cache. Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
+If we started the application, then every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()`, which in turn would first check the cache.
+
+Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
 
 == Using Hazelcast as Cache Manager
 
@@ -83,7 +90,7 @@ We want to use Hazelcast as the cache manager. The good news is that all you hav
 </dependency>
 ----
 
-Then, you need to add Hazelcast configuration in one of the following manners:
+Then, you need to add Hazelcast configuration using one of the below options:
 
 - Add `hazelcast.yaml` configuration OR
 - Add `hazelcast.xml` configuration OR
@@ -105,13 +112,13 @@ No more configuration needed, Hazelcast is already used as the cache manager for
 
 == Starting the Application
 
-To start the application, run the following command.
+To start the application, run the following command:
 
 ----
 mvn spring-boot:run
 ----
 
-You should see in the logs that embedded Hazelcast has started.
+You should see in the logs that embedded Hazelcast has started:
 
 ----
 Members {size:1, ver:1} [
@@ -121,14 +128,14 @@ Members {size:1, ver:1} [
 
 == Testing the Application
 
-You can test the application by executing the following command.
+You can test the application by executing the following command:
 
 ----
 curl localhost:8080/books/12345
 Sample Book Name
 ----
 
-The first time you execute this command it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
+The first time you execute this command, it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
 
 ----
 curl localhost:8080/books/12345
@@ -137,10 +144,6 @@ Sample Book Name
 
 == What's more?
 
-Spring Boot is really well integrated with Hazelcast and vice-versa. If you want to use Hazelcast in the client-server topology, then it's enough if you create `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured Hazelcast client.
+If you want to use Hazelcast in the client-server topology, then it's enough to place `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured a Hazelcast client.
 
 If you want to read more, check out the official documentation https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-hazelcast[Spring Boot: Hazelcast].
-
-
-
-

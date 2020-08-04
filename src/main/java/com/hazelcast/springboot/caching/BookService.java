@@ -15,7 +15,8 @@ public class BookService {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
         }
         return "Sample Book Name";
     }
