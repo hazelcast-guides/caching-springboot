@@ -10,7 +10,7 @@ include::{templates-url}/link-to-repo.adoc[]
 
 == What You’ll Learn
 
-In this guide, you'll deploy a Spring Boot application which uses Hazelcast as a cache manager.
+In this guide, you'll deploy a Spring Boot application that uses Hazelcast as a cache manager.
 
 == Prerequisites
 
@@ -68,7 +68,7 @@ public class BookService {
 }
 ----
 
-If we started the application, then every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()` which in turn would first check the cache. Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
+If we started the application, then every call to the endpoint `/books/<isbn>` would go to the method `findBookNameByIsbn()`, which in turn would first check the cache. Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
 
 == Using Hazelcast as Cache Manager
 
@@ -128,7 +128,7 @@ curl localhost:8080/books/12345
 Sample Book Name
 ----
 
-The first time you execute this command it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
+The first time you execute this command, it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
 
 ----
 curl localhost:8080/books/12345
@@ -137,10 +137,6 @@ Sample Book Name
 
 == What's more?
 
-Spring Boot is really well integrated with Hazelcast and vice-versa. If you want to use Hazelcast in the client-server topology, then it's enough if you create `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured Hazelcast client.
+If you want to use Hazelcast in the client-server topology, then it's enough to create `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured a Hazelcast client.
 
 If you want to read more, check out the official documentation https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-hazelcast[Spring Boot: Hazelcast].
-
-
-
-
