@@ -86,7 +86,6 @@ We want to use Hazelcast as the cache manager. The good news is that all you hav
 <dependency>
     <groupId>com.hazelcast</groupId>
     <artifactId>hazelcast-all</artifactId>
-    <version>4.0.2</version>
 </dependency>
 ----
 
