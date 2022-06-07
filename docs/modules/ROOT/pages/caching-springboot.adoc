@@ -1,20 +1,20 @@
-:github-address: https://github.com/hazelcast-guides/caching-springboot
-:hazelcast: Hazelcast IMDG
+= Cache with Spring Boot and Hazelcast
 :templates-url: templates:ROOT:page$/
+:page-layout: tutorial
+:page-product: imdg
+:page-categories: Caching, Spring Boot
+:page-lang: java
+:page-edition: 
+:page-est-time: 5 mins
 :framework: Spring Boot
-= Caching with Spring Boot and Hazelcast
-
-This guide will get you started to use Hazelcast as a cache manager for your Spring Boot application.
-
-include::{templates-url}/link-to-repo.adoc[]
+:description: In this tutorial, you'll deploy a Spring Boot application that uses Hazelcast as a cache manager.
 
 == What You’ll Learn
 
-In this guide, you'll deploy a Spring Boot application that uses Hazelcast as a cache manager.
+{description}
 
-== Prerequisites
+== Before you Begin
 
-- ~5 minutes
 - JDK 1.8+
 - Apache Maven 3.2+
 
@@ -77,7 +77,7 @@ If we started the application, then every call to the endpoint `/books/<isbn>` w
 
 Only if it does not find value in the cache, the method `findBookInSlowSource()` would be executed.
 
-== Using Hazelcast as Cache Manager
+== Use Hazelcast as Cache Manager
 
 We want to use Hazelcast as the cache manager. The good news is that all you have to do it to add Hazelcast to your classpath.
 
@@ -109,7 +109,7 @@ hazelcast:
 
 No more configuration needed, Hazelcast is already used as the cache manager for your project!
 
-== Starting the Application
+== Start the Application
 
 To start the application, run the following command:
 
@@ -125,7 +125,7 @@ Members {size:1, ver:1} [
 ]
 ----
 
-== Testing the Application
+== Test the Application
 
 You can test the application by executing the following command:
 
@@ -141,8 +141,8 @@ curl localhost:8080/books/12345
 Sample Book Name
 ----
 
-== What's more?
+== See Also
 
-If you want to use Hazelcast in the client-server topology, then it's enough to place `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured a Hazelcast client.
+If you want to use Hazelcast in the client/server topology, then it's enough to place `hazelcast-client.yaml` file instead of `hazelcast.yaml` on your classpath. And that's it! You configured a Hazelcast client.
 
 If you want to read more, check out the official documentation https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-hazelcast[Spring Boot: Hazelcast].
