@@ -1,4 +1,4 @@
-= Cache with Spring Boot and Hazelcast
+= Cache with Spring Boot and Hazelcast Cache Manager
 :templates-url: templates:ROOT:page$/
 :page-layout: tutorial
 :page-product: imdg
