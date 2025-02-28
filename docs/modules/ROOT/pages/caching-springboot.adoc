@@ -1,4 +1,4 @@
-= Cache with Spring Boot and Hazelcast
+= Cache with Spring Boot and Hazelcast Cache Manager
 :templates-url: templates:ROOT:page$/
 :page-layout: tutorial
 :page-product: imdg
@@ -15,16 +15,16 @@
 
 == Before you Begin
 
-- JDK 1.8+
-- Apache Maven 3.2+
+- JDK 17+
+- Apache Maven 3.8+
 
 == Spring Boot Application
 
 To use caching in your Spring Boot application, you need to:
 
 - add `org.springframework.boot:spring-boot-starter-cache` dependency
-- add `@EnableCaching` annotation to your main class
-- add `@Cacheable("books")` annotation to every method you want to cache
+- add `@EnableCaching` annotation to your main configuration class
+- add `@Cacheable("X")` annotation to every method you want to cache, where X will be the name of the cache - eg. "books"
 
 For more explanation on the Spring Boot cache topic, please check the official Spring Guide: https://spring.io/guides/gs/caching/[Caching Data with Spring].
 
@@ -85,7 +85,8 @@ We want to use Hazelcast as the cache manager. The good news is that all you hav
 ----
 <dependency>
     <groupId>com.hazelcast</groupId>
-    <artifactId>hazelcast-all</artifactId>
+    <artifactId>hazelcast</artifactId>
+    <version>5.5.0</version>
 </dependency>
 ----
 
@@ -130,15 +131,17 @@ Members {size:1, ver:1} [
 You can test the application by executing the following command:
 
 ----
-curl localhost:8080/books/12345
+curl -w '\nTotal: %{time_total}s\n' localhost:8080/books/12345
 Sample Book Name
+Total: 3.090784s
 ----
 
 The first time you execute this command, it should take some time to get the response. However, when you try it again, it should be instant. That means that the cache is used.
 
 ----
-curl localhost:8080/books/12345
+curl -w '\nTotal: %{time_total}s\n' localhost:8080/books/12345
 Sample Book Name
+Total: 0.009667s
 ----
 
 == See Also
